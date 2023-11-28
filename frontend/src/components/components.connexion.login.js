@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 //import "../connexion.css"; // Assurez-vous d'importer votre fichier CSS
 
 /*export function ConnexionLogin() {
@@ -87,87 +87,84 @@ import React, { useState } from "react";
     </>
   );
 }*/
-
-
-import "../connexion.css"; // Make sure to import your CSS file
+import "../connexion.css"; // Assurez-vous d'importer votre fichier CSS
+import React, { useState } from "react";
 
 export function ConnexionLogin() {
   return (
     <>
-    <div className="overlay">
-      {/* LOG IN FORM by Omar Dsoky */}
-      <form>
-        {/* Container for items in the form */}
-        <div className="con">
-          {/* Start header Content */}
-          <header className="head-form">
-            <h2 >Log In</h2>
-            {/* A welcome message or an explanation of the login form */}
-            <p>login here using your username and password</p>
-          </header>
-          {/* End header Content */}
-          <br />
-          <div className="field-set">
-            {/* user name */}
-            <span className="input-item">
-              <i className="fa fa-user-circle"></i>
-            </span>
-            {/* user name Input */}
-            <input
-              className="form-input"
-              id="txt-input"
-              type="text"
-              placeholder="@UserName"
-              required
-            />
-
+      <div className="overlay">
+    
+        <form>
+          {/* Container for items in the form */}
+          <div className="con">
+            {/* Start header Content */}
+            <header className="head-form">
+              <h2>Log In</h2>
+              {/* A welcome message or an explanation of the login form */}
+              <p>login here using your username and password</p>
+            </header>
+            {/* End header Content */}
             <br />
-
-            {/* Password */}
-            <span className="input-item">
-              <i className="fa fa-key"></i>
-            </span>
-            {/* Password Input */}
-            <input
-              className="form-input"
-              type="password"
-              placeholder="Password"
-              id="pwd"
-              name="password"
-              required
-            />
-
-            {/* Show/hide password */}
-            <span>
-              <i className="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
-            </span>
-
-            <br />
-            {/* buttons */}
-            {/* button LogIn */}
-            <button className="log-in">Log In</button>
+            <div className="field-set">
+  {/* user name */}
+  <div className="input-item" > 
+    <span>
+      <i className="fa fa-user-circle"></i>
+    </span>
+    {/* user name Input */}
+    <input
+      className="form-input"
+      id="txt-input"
+      type="text"
+      placeholder="@UserName"
+      required
+    />
+  </div>
+  <br />
+  {/* Password */}
+  <div className="input-item">
+    <span>
+      <i className="fa fa-key"></i>
+    </span>
+    {/* Password Input */}
+    <input
+      className="form-input"
+      type="password"
+      placeholder="Password"
+      id="pwd"
+      name="password"
+      required
+    />
+    {/* Show/hide password */}
+    <span>
+      <i className="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
+    </span>
+  </div>
+  <br />
+  {/* buttons */}
+  {/* button LogIn */}
+  <button className="log-in">Log In</button>
+</div>
+            {/* other buttons */}
+            <div className="other">
+              {/* Forgot Password link */}
+              <a href="/chemin-vers-la-page-de-mot-de-passe-oublie" className="btn submits frgt-pass">
+                Forgot Password
+              </a>
+              {/* Sign Up button */}
+              <button className="btn submits sign-up">
+                Sign Up
+                {/* Sign Up font icon */}
+                <i className="fa fa-user-plus" aria-hidden="true"></i>
+              </button>
+              {/* End Other the Division */}
+            </div>
+            {/* End Container */}
           </div>
-
-          {/* other buttons */}
-          <div className="other">
-            {/* Forgot Password button */}
-            <button className="btn submits frgt-pass">Forgot Password</button>
-            {/* Sign Up button */}
-            <button className="btn submits sign-up">
-              Sign Up
-              {/* Sign Up font icon */}
-              <i className="fa fa-user-plus" aria-hidden="true"></i>
-            </button>
-            {/* End Other the Division */}
-          </div>
-
-          {/* End Container */}
-        </div>
-
-        {/* End Form */}
-      </form>
-    </div>
-    </> );
- 
+          {/* End Form */}
+        </form>
+      </div>
+    </>
+  );
 }
-

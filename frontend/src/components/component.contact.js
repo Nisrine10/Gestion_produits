@@ -15,8 +15,10 @@ const ContactForm = () => {
   return (
     <div className="contact-form">
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+      
           <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '40px' }}>Contact Us</h2>
+          
+          <div className="form-group">
           <label htmlFor="name">Name</label>
           <input
             type="text"
