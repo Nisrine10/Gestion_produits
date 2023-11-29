@@ -2,7 +2,7 @@ const Product = require("../models/Product");//appeler le modele au niveau du co
 
 async function getAllProducts(req,res){
     try{
- const product = await Product.find();
+ const product = await Product.find().populate("category");
  res.status(200).json(product);
     }catch(error){
         res.status(500).send('erreur dans le serveur');
@@ -13,7 +13,7 @@ async function getAllProducts(req,res){
 async function getProductById(req,res){
     try{
     const idP = req.params.id;
-    const product = await Product.findById(idP);
+    const product = await Product.findById(idP).populate("category");
     res.status(200).json(product);
     }catch(error){
         res.status(500).send('erreur dans le serveur');
@@ -48,7 +48,7 @@ async function updateProduct(req,res){
     try{
     const idP = req.params.id;
     await Product.findByIdAndUpdate(idP,req.body);
-    res.satus(200).json("Le produit est bien modifiee");
+    res.status(200).json("Le produit est bien modifiee");
 }catch(error){
     res.status(500).send("erreur dans le serveur");
 }

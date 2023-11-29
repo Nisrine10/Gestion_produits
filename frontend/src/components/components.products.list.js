@@ -1,19 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { deleteProductByID, getAllProducts } from "../services/product.service";
+import { deleteProductByID, getAllProducts, updateProduct } from "../services/product.service";
 import { Link } from "react-router-dom";
 import "../index.css";
+import { getAllCategories } from "../services/categorie.service";
 
 export function ProductList() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [cat, setSelectedCat] = useState(null);
+
 
   useEffect(() => {
     fetchProducts();
+    fetchCategories();
   }, []);
+
+
+  const [categories, setCategories]= useState([]);
 
   async function fetchProducts() {
     const res = await getAllProducts();
     setProducts(res.data);
+  }
+
+
+
+  async function fetchCategories() {
+    const res = await getAllCategories();
+    setCategories(res.data);
   }
 
   async function deleteProduct(id) {
@@ -25,12 +39,21 @@ export function ProductList() {
     setEditingProduct({ ...product });
   }
 
-  function saveEditedProduct() {
-    // Mettez à jour le produit directement dans la liste côté client
-    setProducts(products.map(p => (p._id === editingProduct._id ? editingProduct : p)));
 
-    // Réinitialisez l'état d'édition
+
+  async function saveEditedProduct() {
+    // Mettez à jour le produit directement dans la liste côté client
+    console.log(editingProduct);
+    try{
+    setProducts(products.map(p => (p._id === editingProduct._id ? editingProduct : p)));
+    console.log(editingProduct._id)
+    await updateProduct(editingProduct);
     setEditingProduct(null);
+
+    }catch(error){
+        console.log(error)
+    }
+    // Réinitialisez l'état d'édition
   }
 
   function cancelEdit() {
@@ -47,6 +70,7 @@ export function ProductList() {
             <tr>
               <th className="text-center">Name</th>
               <th className="text-center">Price</th>
+              <th className="text-center">Category</th>
               <th className="text-center">Actions</th>
             </tr>
           </thead>
@@ -55,9 +79,10 @@ export function ProductList() {
               <tr key={index}>
                 <td className="text-center">{elem.name}</td>
                 <td className="text-center">{elem.price}</td>
+                <td className="text-center">{elem.category.name}</td>
                 <td className="text-center">
                   <i className="fas fa-trash icon-bleue me-4" onClick={() => deleteProduct(elem._id)}></i>{" "}
-                  {/* Ajout d'un espace ici */}
+                 
                   <i className="fas fa-edit icon-bleue" onClick={() => editProduct(elem)}></i>
                 </td>
               </tr>
@@ -81,6 +106,21 @@ export function ProductList() {
                 value={editingProduct.price}
                 onChange={(e) => setEditingProduct({ ...editingProduct, price: e.target.value })}
               />
+              <br/>
+
+               <label>Category:</label>
+                            <select
+                value={editingProduct.category}
+                onChange={(e) => setEditingProduct({ ...editingProduct, category: e.target.value })}
+              >
+                {categories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+                  
+
               <br />
               {/* Ajout d'un saut de ligne ici */}
               <button type="button" onClick={saveEditedProduct}>Save</button>{" "}
