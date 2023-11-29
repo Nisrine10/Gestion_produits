@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 export function Home() {
   return (
     <>
+    
+
       <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '40px' }}>Product Management System</h2>
       <div className="bgimg w3-display-container w3-text-white" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
@@ -17,7 +19,10 @@ export function Home() {
             our platform is designed to meet the unique needs of businesses in the fast-paced digital era.
              Embrace efficiency, embrace growth – that's the ethos of our Product Management System.</p>
       </div>
-
+      <div className="image-container">
+      <img src="https://img.freepik.com/free-photo/responsive-devices-desktop-3d-rendering-showing-website-builder_72104-4386.jpg" alt="Description de l'image"></img>
+    </div>
+      
       {/* Menu Modal */}
       <div id="menu" className="w3-modal">
         <div className="w3-modal-content w3-animate-zoom">
